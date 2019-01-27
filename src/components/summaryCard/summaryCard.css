@@ -1,0 +1,60 @@
+@-webkit-keyframes cogRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+.summary-card {
+  color: #fff;
+  position: relative;
+}
+
+.summary-card-title {
+  position: absolute;
+  left: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.summary-card .icon-cog,
+.summary-card .icon-coffee {
+  opacity: 0.2;
+  text-align: center;
+}
+
+.summary-card-number {
+  font-size: 48px;
+  position: absolute;
+  bottom: 5px;
+}
+
+@media screen and (min-width: 768px) {
+  .summary-card-title {
+    top: 25px;
+  }
+  .summary-card-number {
+    right: 15px;
+  }
+  .icon-cog,
+  .icon-coffee {
+    font-size: 144px;
+    margin-top: -10px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .summary-card-title {
+    top: 10px;
+  }
+  .summary-card-number {
+    right: 10px;
+  }
+  .icon-cog,
+  .icon-coffee {
+    font-size: 64px;
+    padding-top: 10px;
+  }
+}
