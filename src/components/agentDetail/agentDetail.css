@@ -44,6 +44,13 @@
 
 .detail-item ul li:nth-child(2) span {
   padding: 5px 10px;
+}
+
+.detail-item ul li:nth-child(2) [title="building"] {
+  background: #FF9A2A;
+}
+
+.detail-item ul li:nth-child(2) [title="idle"] {
   background: #7FBC39;
 }
 
@@ -85,6 +92,7 @@
   justify-content: space-around;
   background: #EFEFEF;
   font-weight: bold;
+  margin-bottom: 1%;
 }
 
 .detail-item ul li:nth-child(n+6) span {
@@ -93,51 +101,28 @@
 }
 
 .detail-item .pop-dialog {
-  width: 570px;
   height: 160px;
   position: absolute;
-  top: 98%;
-  left: 13.5%;
   border: 2px solid #00B4CF;
   background: #ffffff;
   z-index: 10;
 }
 
-.detail-item .pop-dialog .angle-one {
-  display: inline-block;
+.detail-item .pop-dialog span {
   position: absolute;
-  width: 0;
-  height: 0;
-  top: -20px;
-  left: 29px;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 20px solid #00B4CF;
+  top: -18%;
+  left: 5.5%;
+  font-size: 42px;
+  color: #00B4CF;
+  background: #ffffff;
 }
 
-.detail-item .pop-dialog .angle-two {
-  display: inline-block;
-  position: absolute;
-  width: 0;
-  height: 0;
-  top: -19px;
-  left: 31px;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-bottom: 16px solid #ffffff;
-}
-
-.detail-item .pop-dialog .angle-three {
-  display: inline-block;
-  position: absolute;
-  width: 0;
-  height: 0;
-  top: -2.5px;
-  left: 29px;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 0 solid #ffffff;
-  border-top: 20px solid #ffffff;
+.detail-item .pop-dialog span.obscurity {
+  width: 16px;
+  height: 2px;
+  top: -1%;
+  left: 6.5%;
+  background: #ffffff;
 }
 
 .detail-item .pop-dialog i {
@@ -147,6 +132,7 @@
   position: absolute;
   top: 10px;
   right: 20px;
+  cursor: pointer;
 }
 
 .detail-item .pop-dialog i:hover {
@@ -163,29 +149,24 @@
 }
 
 .detail-item .pop-dialog p {
-  margin: 30px 5% 0 3%;
   opacity: 0.8;
 }
 
 .detail-item .pop-dialog input {
-  width: 90%;
   height: 20%;
+  color: #00B4CF;
   padding-left: 20px;
   margin: 10px 3%;
   border: 1px solid #E1E4E6;
   border-radius: 5px;
 }
 
-.detail-item .pop-dialog div {
-  margin: 10px 3%;
-}
-
 .detail-item .pop-dialog div button {
-  width: 20%;
   height: 30px;
   border: 0;
   font-size: 14px;
   color: #ffffff;
+  cursor: pointer;
 }
 
 .detail-item .pop-dialog div button:first-child {
@@ -213,7 +194,15 @@
   background: #2D4054;
 }
 
+.detail-item:last-child {
+  margin-bottom: 20px;
+}
+
 @media screen and (min-width: 1200px) {
+  .pop-dialog {
+    top: 98%;
+    left: 13.5%;
+  }
   .detail-item .centos,
   .detail-item .debian,
   .detail-item .suse,
@@ -249,6 +238,10 @@
 }
 
 @media screen and (min-width: 1023px) and (max-width: 1200px) {
+  .pop-dialog {
+    top: 99%;
+    left: 0;
+  }
   .detail-item:first-child {
     display: none;
   }
@@ -262,6 +255,10 @@
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
+  .pop-dialog {
+    top: 99%;
+    left: 0;
+  }
   .detail-item:first-child {
     display: none;
   }
@@ -275,8 +272,49 @@
 }
 
 @media screen and (min-width: 768px) {
+  .pop-dialog {
+    width: 570px;
+  }
+  .pop-dialog span {
+    display: inline-block;
+  }
+  .pop-dialog p {
+    margin: 30px 5% 0 3%;
+  }
+  .pop-dialog input {
+    width: 90%;
+  }
+  .pop-dialog div {
+    margin: 10px 3%;
+  }
+  .pop-dialog div button {
+    width: 20%;
+  }
   .detail-item {
     height: 120px;
+  }
+  .detail-item .deny-button {
+    display: inline-block;
+    width: 8%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    position: absolute;
+    right: 8px;
+    bottom: 24px;
+    color: #ffffff;
+    background: #00B4CF;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .detail-item .deny-button .icon-deny {
+    padding-right: 5px;
+  }
+  .detail-item .deny-button:hover {
+    background: #01869A;
+  }
+  .detail-item .deny-button:active {
+    background: #01869A;
   }
   .detail-item ul li:nth-child(4) {
     width: 23%;
@@ -287,11 +325,38 @@
     height: 20%;
     margin-left: 2%;
   }
+  .detail-item ul li:nth-child(12), .detail-item ul li:nth-child(18) {
+    margin-left: 6%;
+  }
 }
 
 @media screen and (max-width: 767px) {
+  .pop-dialog {
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+  .pop-dialog span {
+    display: none;
+  }
+  .pop-dialog p {
+    margin: 30px 5% 10px 3%;
+  }
+  .pop-dialog input {
+    width: 86%;
+  }
+  .pop-dialog div {
+    display: flex;
+    margin: 10px 15%;
+  }
+  .pop-dialog div button {
+    width: 70%;
+  }
   .detail-item {
     height: 160px;
+  }
+  .detail-item .deny-button {
+    visibility: hidden;
   }
   .detail-item:first-child {
     display: none;

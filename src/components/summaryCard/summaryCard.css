@@ -19,6 +19,10 @@
   font-weight: bold;
 }
 
+.summary-card .icon-cog {
+  animation: cogRotate 2s infinite linear;
+}
+
 .summary-card .icon-cog,
 .summary-card .icon-coffee {
   opacity: 0.2;
