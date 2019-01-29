@@ -1,12 +1,12 @@
 import React, {
   Component
 } from 'react';
-
 import SummaryCard from "./components/summaryCard/summaryCard";
 import AgentDetail from "./components/agentDetail/agentDetail";
+import axios from 'axios';
+import imageUrl from './logo/avatar.jpg';
 import "./App.css"
 import "./font icons/fonts.css"
-import axios from 'axios';
 
 class App extends Component {
 
@@ -16,9 +16,13 @@ class App extends Component {
       buildingNum: 0, 
       idleNum: 0, 
       physicalNum: 0, 
-      virtualNum: 0
+      virtualNum: 0,
+      logoStatus: 'icon-angle-down',
+      isShow: 'none',
+      isShowSideBar: 'none'
     };
 
+  // 页面渲染后调数据接口
   componentDidMount() {
     axios.get('/agents')
     .then( (response) => {
@@ -34,6 +38,40 @@ class App extends Component {
     .catch(function (error) {
       console.log(error);
     });
+    if (window.screen.width >= 1024) {
+        this.setState({
+          isShowSideBar: "block"
+        });
+    }
+  };
+
+  // 侧边栏展示
+  showSiderBar = () => {
+    this.setState({
+      isShowSideBar: "block"
+    })
+  };
+
+  // 关闭侧边栏
+  closeSiderBar = () => {
+    this.setState({
+      isShowSideBar: "none"
+    })
+  };
+
+  // 登录框展示与隐藏
+  clickLogo = () => {
+    if (this.state.logoStatus === 'icon-angle-down') {
+      this.setState({
+        logoStatus: 'icon-angle-up',
+        isShow: 'block'
+      });
+    } else {
+      this.setState({
+        logoStatus: 'icon-angle-down',
+        isShow: 'none'
+      });
+    }
   };
 
   dataStatusProcessing = (data) => {
@@ -91,17 +129,42 @@ class App extends Component {
       color: '#00B4CF',
       borderBottom: '3px solid #00B4CF'
     };
+    let isShow = {
+      display: this.state.isShow
+    };
+    let isShowSideBar = {
+      display: this.state.isShowSideBar
+    };
     return <div>
       <header>
-        CRULSE
+        <span className="icon-navicon" onClick={this.showSiderBar}></span>
+        <ul className="header-title">
+          <li className="large-size">C</li>
+          <li className="small-size">R</li>
+          <li className="small-size">U</li>
+          <li className="large-size">l</li>
+          <li className="small-size">S</li>
+          <li className="small-size">E</li>
+        </ul>
+        <img src={imageUrl} alt="logo" className="logo" onClick={this.clickLogo}></img>
+        <span className={this.state.logoStatus} onClick={this.clickLogo}></span>
+        <ul className="sign-dialog" style={isShow}>
+          <li>
+              <span className="icon-id-card"></span>Profile
+          </li>
+          <li>
+              <span className="icon-sign-in"></span>Sign Out
+          </li>
+        </ul>
       </header>
       <div className="content">
-        <div className="sidebar">
+        <div className="sidebar" style={isShowSideBar}>
+        <span className="icon-close" onClick={this.closeSiderBar}></span>
           <ul className="sidebar-top">
             <li className="sidebar-top-item">
               <span className="icon-dashboard"></span>DASHBOARD
               </li>
-            <li className="sidebar-top-item">
+            <li className="sidebar-top-item active-item">
               <span className="icon-sitemap"></span>AGENT
               </li>
             <li className="sidebar-top-item">
@@ -158,18 +221,19 @@ class App extends Component {
             </div>
           </div>
           <div className="detail-items">
-          {this.state.showAgentsData.map((item, index) => {
+          {this.state.showAgentsData.length ? this.state.showAgentsData.map((item, index) => {
             return (
               <AgentDetail key={index} data={item}></AgentDetail>
             )
             }
-          )}
+          ) : <div className="empty-data">暂无数据</div>
+        }
           </div>
         </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
       </div>
-      <footer>Copyright 2017 ThoughtWorks</footer>
+      <footer>©Copyright 2017 ThoughtWorks</footer>
     </div>
-};
+  };
 }
 
 export default App;

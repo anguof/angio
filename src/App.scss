@@ -14,6 +14,11 @@ li {
     list-style-type: none;
 }
 
+@font-face {
+    font-family: myFont;
+    src: url('./font icons/fonts/cruise.ttf');
+}
+
 @mixin borderStyle($color: red) {
     border: 1px solid $color;
     box-sizing: border-box;
@@ -47,13 +52,87 @@ footer {
 }
 
 header {
-    @include borderStyle();
-    @include heightAndLineHeight(100px);
+    @include heightAndLineHeight(80px);
+    position: relative;
+    .header-title {
+        width: 100px;
+        height: 50px;
+        padding-top: 15px;
+        margin: 0 auto;
+        display: flex;
+        font-family: myFont;
+        li {
+            display: inline-block;
+            width: 20px;
+            height: 50px;
+            font-size: 30px;
+            @include flexContentCenter;
+        }
+        .small-size {
+            font-weight: bold;
+        }
+        .large-size {
+            font-size: 42px;
+            margin-top: -5px;
+            color: #00B4CF;
+        }
+        :first-child {
+            margin-right: 3px;
+        }
+    }
+    .logo {
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        position: absolute;
+        top: 20px;
+        cursor: pointer;
+    }
+    .icon-angle-up, .icon-angle-down {
+        display: inline-block;
+        font-size: 26px;
+        position: absolute;
+        color: #999999;
+        cursor: pointer;
+    }
+    .sign-dialog {
+        width: 150px;
+        height: 100px;
+        position: absolute;
+        right: 7%;
+        top: 65px;
+        z-index: 100;
+        background: #ffffff;
+        padding-top: 20px;
+        border: 1px solid #EFEFEF;
+        box-shadow:-5px 5px 10px -4px #EFEFEF,5px 5px 10px -4px #EFEFEF;
+        li {
+            height: 40px;
+            @include flexContentCenter;
+            justify-content: flex-start;
+            padding-left: 10px;
+            font-size: 16px;
+            font-family: myFont;
+            cursor: pointer;
+            span {
+                font-size: 18px;
+            }
+            .icon-id-card {
+                padding-right: 12px;
+            }
+            .icon-sign-in {
+                padding-right: 18px;
+            }
+            &:hover {
+                background: #EFEFEF;
+            }
+        }
+    }
 }
 
 footer {
-    @include borderStyle();
     @include heightAndLineHeight(40px);
+    border-top: 1px solid #EFEFEF;
 }
 
 .content {
@@ -74,10 +153,14 @@ footer {
                     font-size: 20px;
                     padding-right: 15px;
                 }
-                &.hover {
+                &:hover {
                     color: #00B4CF;
                     background: #435466;
                 }
+            }
+            .active-item {
+                color: #00B4CF;
+                background: #435466;
             }
         }
         h1 {
@@ -173,13 +256,37 @@ footer {
                 }
             }
         }
+        .empty-data {
+            width: 100%;
+            height: 300px;
+            font-size: 20px;
+            text-align: center;
+            line-height: 300px;
+            background: #ffffff;
+            margin: 10px 0;
+        }       
     }
 }
 
 @media screen and (min-width: 1200px) {
+    .logo {
+        right: 12%;
+    }
+    header {
+        .icon-angle-up, .icon-angle-down {
+            right: 10.5%;
+            top: 27px;
+        }
+        .icon-navicon {
+            display: none;
+        }
+    }
     .sidebar {
         width: 20%;
         margin-left: 10%;
+        .icon-close {
+            display: none;
+        }
     }
     .detail {
         @include marginStyle(2%, 10%);
@@ -229,8 +336,23 @@ footer {
 }
 
 @media screen and (min-width: 1023px) and (max-width: 1200px) {
+    .logo {
+        right: 7%;
+    }
+    header {
+        .icon-angle-up, .icon-angle-down {
+            right: 5%;
+            top: 27px;
+        }
+        .icon-navicon {
+            display: none;
+        }
+    }
     .sidebar {
         width: 24%;
+        .icon-close {
+            display: none;
+        }
     }
     .detail {
         @include marginStyle(1%, 1%);
@@ -284,8 +406,55 @@ footer {
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
+    .logo {
+        right: 7%;
+    }
+    header {
+        .icon-angle-up, .icon-angle-down {
+            right: 4%;
+            top: 27px;
+        }
+        .icon-navicon {
+            display: block;
+            font-size: 22px;
+            position: absolute;
+            top: 30px;
+            left: 20px;
+            cursor: pointer;
+            &:hover {
+                color: #E1E4E6;
+            }
+            &:active {
+                color: #E1E4E6; 
+            }
+        }
+    }
+    .content {
+        position: relative;
+    }
     .sidebar {
-        width: 0;
+        position: absolute;
+        width: 30%;
+        height: auto;
+        padding-top: 100px;
+        top: -100px;
+        left: 0;
+        z-index: 50;
+        .icon-close {
+            display: block;
+            font-size: 26px;
+            color: #00B4CF;
+            position: absolute;
+            top: 32px;
+            right: 10px;
+            cursor: pointer;
+            &:hover {
+                color: #01869A;
+            }
+            &:active {
+                color: #01869A;
+            }
+        }
     }
     .detail {
         @include marginStyle(1%, 1%);
@@ -340,8 +509,51 @@ footer {
 }
 
 @media screen and (max-width: 767px) {
+    .logo {
+        right: 10%;
+    }
+    header {
+        .icon-angle-up, .icon-angle-down {
+            right: 3%;
+            top: 27px;
+        }
+        .icon-navicon {
+            display: block;
+            font-size: 22px;
+            position: absolute;
+            top: 30px;
+            left: 20px;
+            cursor: pointer;
+            &:hover {
+                color: #E1E4E6;
+            }
+            &:active {
+                color: #E1E4E6; 
+            }
+        }
+    }
     .sidebar {
-        width: 0;
+        position: absolute;
+        width: 60%;
+        height: auto;
+        padding-top: 100px;
+        top: -100px;
+        left: 0;
+        z-index: 50;
+        .icon-close {
+            display: block;
+            font-size: 20px;
+            color: #00B4CF;
+            position: absolute;
+            right: 10px;
+            cursor: pointer;
+            &:hover {
+                color: #01869A;
+            }
+            &:active {
+                color: #01869A;
+            }
+        }
     }
     .detail {
         @include marginStyle(1%, 1%);

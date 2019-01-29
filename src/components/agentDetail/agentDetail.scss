@@ -38,6 +38,11 @@
                 width: 16%;
                 span {
                     padding: 5px 10px;
+                }
+                [title="building"] {
+                    background: #FF9A2A;
+                }
+                [title="idle"] {
                     background: #7FBC39;
                 }
             }
@@ -74,6 +79,7 @@
                 justify-content: space-around;
                 background: #EFEFEF;
                 font-weight: bold;
+                margin-bottom: 1%;
                 span {
                     font-weight: bold;
                     cursor: pointer;
@@ -82,34 +88,25 @@
         }
     }
     .pop-dialog {
-        width: 570px;
         height: 160px;
         position: absolute;
-        top: 98%; 
-        left: 13.5%; 
         border: 2px solid #00B4CF; // box-shadow: 0 3px 5px #000;
         background: #ffffff;
         z-index: 10;
-        @mixin angleStyle ($top, $left, $border, $doubleBorder, $color) {
-            display: inline-block;
+        span {
             position: absolute;
-            width: 0;
-            height: 0;
-            top: $top;
-            left: $left;
-            border-left: $border solid transparent;
-            border-right: $border solid transparent;
-            border-bottom: $doubleBorder solid $color;
+            top: -18%;
+            left: 5.5%;
+            font-size: 42px;
+            color: #00B4CF;
+            background: #ffffff;
         }
-        .angle-one {
-            @include angleStyle(-20px, 29px, 10px, 20px, #00B4CF);
-        }
-        .angle-two {
-            @include angleStyle(-19px, 31px, 8px, 16px, #ffffff);
-        }
-        .angle-three {
-            @include angleStyle(-2.5px, 29px, 10px, 0, #ffffff);
-            border-top: 20px solid #ffffff;
+        span.obscurity {
+            width: 16px;
+            height: 2px;
+            top: -1%;
+            left: 6.5%;
+            background: #ffffff;
         }
         i {
             display: inline-block;
@@ -118,6 +115,7 @@
             position: absolute;
             top: 10px;
             right: 20px;
+            cursor: pointer;
             &:hover {
                 color: #01869A;
             }
@@ -130,25 +128,23 @@
             height: 10%;
         }
         p {
-            margin: 30px 5% 0 3%;
             opacity: 0.8;
         }
         input {
-            width: 90%;
             height: 20%;
+            color: #00B4CF;
             padding-left: 20px;
             margin: 10px 3%;
             border: 1px solid #E1E4E6;
             border-radius: 5px;
         }
         div {
-            margin: 10px 3%;
             button {
-                width: 20%;
                 height: 30px;
                 border: 0;
                 font-size: 14px;
                 color: #ffffff;
+                cursor: pointer;
                 &:first-child {
                     background: #00B4CF;
                     &:hover {
@@ -171,9 +167,15 @@
             }
         }
     }
+    &:last-child {
+        margin-bottom: 20px;
+    }
 }
-
 @media screen and (min-width: 1200px) {
+    .pop-dialog {
+        top: 98%;
+        left: 13.5%;
+    }
     .detail-item {
         .centos,
         .debian,
@@ -213,6 +215,10 @@
 }
 
 @media screen and (min-width: 1023px) and (max-width: 1200px) {
+    .pop-dialog {
+        top: 99%;
+        left: 0;
+    }
     .detail-item {
         &:first-child {
             display: none;
@@ -231,6 +237,10 @@
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
+    .pop-dialog {
+        top: 99%;
+        left: 0;
+    }
     .detail-item {
         &:first-child {
             display: none;
@@ -248,8 +258,49 @@
 }
 
 @media screen and (min-width: 768px) {
+    .pop-dialog {
+        width: 570px;
+        span {
+            display: inline-block;
+        }
+        p {
+            margin: 30px 5% 0 3%;
+        }
+        input {
+            width: 90%;
+        }
+        div {
+            margin: 10px 3%;
+            button {
+                width: 20%;
+            }
+        }
+    }
     .detail-item {
         height: 120px;
+        .deny-button {
+            display: inline-block;
+            width: 8%;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            position: absolute;
+            right: 8px;
+            bottom: 24px;
+            color: #ffffff;
+            background: #00B4CF;
+            font-weight: bold;
+            cursor: pointer;
+            .icon-deny {
+                padding-right: 5px;
+            }
+            &:hover {
+                background: #01869A;
+            }
+            &:active {
+                background: #01869A;
+            }
+        }
         ul li {
             &:nth-child(4) {
                 width: 23%;
@@ -260,13 +311,41 @@
                 height: 20%;
                 margin-left: 2%;
             }
+            &:nth-child(12),
+            &:nth-child(18) {
+                margin-left: 6%;
+            }
         }
     }
 }
 
 @media screen and (max-width: 767px) {
+    .pop-dialog {
+        width: 100%;
+        top: 0;
+        left: 0;
+        span {
+            display: none;
+        }
+        p {
+            margin: 30px 5% 10px 3%;
+        }
+        input {
+            width: 86%;
+        }
+        div {
+            display: flex;
+            margin: 10px 15%;
+            button {
+                width: 70%;
+            }
+        }
+    }
     .detail-item {
         height: 160px;
+        .deny-button {
+            visibility: hidden;
+        }
         &:first-child {
             display: none;
         }
